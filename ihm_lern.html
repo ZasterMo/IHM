@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IHM – Lernseite: Stoff &amp; Klausuraufgaben</title>
+<style>
+  :root{
+    --bg:#f2eee6;
+    --card:#fdfaf3;
+    --ink:#20242a;
+    --ink-soft:#4d545d;
+    --muted:#7d7a70;
+    --rule:#e2dbc9;
+    --accent:#2f5a51;
+    --accent-deep:#26473f;
+    --accent-soft:#e6efe9;
+    --ans-bg:#e3eee7;
+    --ans-line:#6d9c8c;
+    --exam:#8b5a16;
+    --exam-bg:#fdf5e6;
+    --exam-line:#eedbc0;
+    --note-bg:#f9f2dd;
+    --note-line:#e7d7a6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,"Helvetica Neue",Arial,sans-serif;
+    font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1370px;margin:0 auto;padding:30px 22px 100px}
+
+  /* ---------- Kopf ---------- */
+  header.kopf{
+    padding:6px 0 24px;margin-bottom:8px;
+    border-bottom:2px solid var(--accent);
+  }
+  .eyebrow{
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;
+    color:var(--accent);font-weight:700;margin:0 0 10px;font-size:10.5px;
+  }
+  header.kopf h1{
+    margin:0 0 10px;font-family:var(--serif);font-weight:600;
+    font-size:40px;line-height:1.1;letter-spacing:-.015em;
+  }
+  header.kopf p{margin:0;color:var(--ink-soft);font-size:14.5px;max-width:62ch}
+  header.kopf p b{color:var(--accent-deep);font-weight:600}
+
+  nav.toc{display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 30px}
+  nav.toc a{
+    font-size:12.5px;text-decoration:none;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--rule);
+    padding:4px 10px;border-radius:6px;white-space:nowrap;
+  }
+  nav.toc a b{color:var(--accent);font-weight:700;margin-right:4px}
+  nav.toc a:hover{border-color:var(--accent);color:var(--accent-deep)}
+
+  /* ---------- Zwei Spalten ---------- */
+  section.pair{
+    display:grid;grid-template-columns:minmax(0,1fr) 350px;
+    gap:40px;align-items:start;
+    padding:34px 0 40px;border-bottom:1px solid var(--rule);
+  }
+  section.pair:last-of-type{border-bottom:0}
+
+  /* ---------- Kapitelkopf ---------- */
+  .kopf-zeile{display:flex;align-items:flex-start;gap:16px;margin:0 0 22px}
+  .knr{
+    font-family:var(--serif);font-size:56px;line-height:.85;font-weight:600;
+    color:rgba(47,90,81,.28);min-width:56px;text-align:right;
+  }
+  .kopf-zeile h2{
+    margin:0;font-family:var(--serif);font-weight:600;font-size:27px;
+    line-height:1.15;letter-spacing:-.015em;color:var(--accent-deep);
+    padding-top:6px;
+  }
+
+  /* ---------- Zwischentitel ---------- */
+  .stoff h3{
+    display:flex;align-items:baseline;gap:9px;
+    margin:32px 0 12px;font-size:17px;font-weight:700;letter-spacing:-.005em;
+    color:var(--ink);padding-bottom:7px;border-bottom:1px solid var(--rule);
+  }
+  .stoff h3:first-of-type{margin-top:0}
+  .snr{
+    font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--accent-deep);
+    background:#d8e6dd;border-radius:5px;padding:2px 8px;
+    flex:0 0 auto;transform:translateY(-1px);
+  }
+  .stoff h4{
+    margin:20px 0 7px;font-size:10.5px;font-weight:700;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .stoff p{margin:8px 0;font-size:15px}
+  .stoff ul,.stoff ol{margin:8px 0;padding-left:20px}
+  .stoff li{font-size:15px;margin:4px 0}
+  .stoff li > ul,.stoff li > ol{margin:4px 0}
+  .stoff li::marker{color:#a9b8ae}
+  .stoff strong{font-weight:600;color:#151a1f}
+  .stoff > *:first-child{margin-top:0}
+
+  /* ---------- Formel / Merk ---------- */
+  .formel{
+    display:block;margin:12px 0;padding:14px 18px;
+    background:var(--accent-deep);color:#f6f1e3;
+    border-radius:10px;font-size:17px;font-weight:600;line-height:1.45;
+    letter-spacing:.01em;box-shadow:0 2px 6px rgba(38,71,63,.18);
+    overflow-x:auto;
+  }
+  .formel b{color:#ffe8b8;font-weight:700}
+  .merk{
+    background:#f6efdc;border-left:3px solid #c3a24a;border-radius:0 9px 9px 0;
+    padding:11px 16px;margin:14px 0;font-size:14.5px;
+  }
+
+  /* ---------- Zweispaltige Blöcke ---------- */
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .two .block{padding:2px 0}
+  .two .block h4{margin:0 0 6px;color:var(--accent-deep);font-size:10.5px}
+  .two .block ul{margin:0;padding-left:18px;font-size:14.5px}
+  .two .block li{margin:3px 0}
+
+  .kw{
+    display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--accent-deep);background:#d8e6dd;
+    border-radius:4px;padding:1px 7px;margin-left:4px;vertical-align:1px;
+  }
+
+  /* ---------- Marker / Tags ---------- */
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+  .tags span{
+    font-size:12.5px;background:var(--card);border:1px solid var(--rule);
+    border-radius:999px;padding:3px 11px;color:var(--ink-soft);
+  }
+
+  /* ---------- Tabelle ---------- */
+  table{
+    width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;
+    background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden;
+  }
+  th,td{padding:8px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+  thead th{background:#ece5d5;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-deep)}
+  td:first-child{color:var(--ink-soft)}
+  tr:last-child td{border-bottom:0}
+
+  /* ---------- Aufgabenspalte ---------- */
+  aside.fragen{position:sticky;top:20px;align-self:start;min-width:0}
+  .fragen .label{
+    font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--exam);font-weight:700;margin:0 0 10px;
+  }
+  .karte{
+    background:var(--exam-bg);border:1px solid var(--exam-line);
+    border-left:4px solid #bd7f2c;border-radius:10px;
+    padding:13px 16px;margin:0 0 11px;box-shadow:0 1px 3px rgba(120,80,20,.06);
+  }
+  .karte .kopfz{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
+  .karte .nr{
+    font-family:var(--serif);font-size:21px;font-weight:600;color:var(--exam);line-height:1;
+  }
+  .karte .pt{
+    margin-left:auto;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+    color:#8a6220;background:#f7ebd3;border-radius:999px;padding:2px 9px;font-weight:600;
+  }
+  .karte p{margin:0;font-size:14px;line-height:1.55;color:#3d3428}
+  .karte .zur{
+    display:inline-block;margin-top:9px;font-size:12px;text-decoration:none;
+    color:#7a5016;border-bottom:1px dotted #c9a572;
+  }
+  .karte .zur:hover{color:#4f3309;border-bottom-style:solid}
+
+  .karte .loesung{
+    margin-top:10px;padding-top:9px;border-top:1px dashed var(--exam-line);
+    font-size:13.5px;line-height:1.5;color:#2f3a33;
+  }
+  .karte .loesung .lt{
+    display:block;margin-bottom:4px;font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent-deep);font-weight:700;
+  }
+  .karte .loesung ul,.karte .loesung ol{margin:0;padding-left:17px}
+  .karte .loesung li{margin:2px 0}
+  .karte .loesung p{margin:0 0 4px;font-size:13.5px}
+  .karte .loesung .fehlt{color:#8a6220;font-style:italic}
+
+  .luecke{
+    background:var(--note-bg);border:1px solid var(--note-line);
+    border-left:4px solid #d3ad35;border-radius:10px;padding:12px 15px;
+    font-size:12.5px;line-height:1.5;color:#584610;margin:0 0 11px;
+  }
+  .luecke b{display:block;margin-bottom:3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  .leer{
+    font-size:12.5px;line-height:1.5;color:#8b887d;border:1px dashed var(--rule);
+    border-radius:10px;padding:12px 14px;background:rgba(253,250,243,.6);
+  }
+
+  footer.fuss{
+    margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);
+    font-size:12px;color:var(--muted);line-height:1.6;
+  }
+
+  @media (max-width:980px){
+    .wrap{padding:18px 15px 70px}
+    .eyebrow{white-space:normal;letter-spacing:.11em}
+    header.kopf h1{font-size:30px}
+    section.pair{grid-template-columns:1fr;gap:18px;padding:26px 0 30px}
+    aside.fragen{position:static;order:2}
+    .knr{font-size:44px;min-width:44px}
+    .kopf-zeile h2{font-size:22px}
+    .stoff li,.stoff p{font-size:15.5px}
+    .karte p{font-size:14.5px}
+    nav.toc{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
+  }
+  @media print{
+    body{background:#fff;font-size:10pt;line-height:1.4}
+    nav.toc{display:none}
+    section.pair{display:block;page-break-inside:avoid;padding:10px 0}
+    aside.fragen{margin-top:10px}
+    .karte{break-inside:avoid}
+    header.kopf{border-bottom:1px solid #999}
+    .formel{background:#eee;color:#000;box-shadow:none}
+    .ans{background:#f3f3ee}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="kopf">
+  <p class="eyebrow">Klausurvorbereitung · Prof. Brumby · 60 Punkte</p>
+  <h1>Service- &amp; Instand­haltungs­management</h1>
+  <p>Links der Stoff, rechts die Klausuraufgabe zum selben Gebiet mit der <b>echten Lösung</b> aus der Lösungsdatei. <b>„Im Stoff nachlesen“</b> springt zum zugehörigen Abschnitt.</p>
+</header>
+
+<nav class="toc">
+  <a href="#k1"><b>1</b>Kennzahlen</a>
+  <a href="#k2"><b>2</b>Controlling</a>
+  <a href="#k3"><b>3</b>TPM</a>
+  <a href="#k4"><b>4</b>RCM</a>
+  <a href="#k5"><b>5</b>Outsourcing</a>
+  <a href="#k6"><b>6</b>Ecosystem</a>
+  <a href="#k7"><b>7</b>Servicemanagement</a>
+  <a href="#k8"><b>8</b>Service Engineering</a>
+  <a href="#k9"><b>9</b>Lean Services</a>
+  <a href="#k10"><b>10</b>Obsoleszenz</a>
+  <a href="#k11"><b>11</b>Maintenance Engineering</a>
+</nav>
+
+<!-- ================= 1 ================= -->
+<section class="pair" id="k1">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">1</span><h2>Kennzahlen und Kennzahlensysteme</h2></div>
+
+    <h3><span class="snr">1.1</span> Vor- und Nachteile von Kennzahlen</h3>
+    <div class="two" id="a-1-1">
+      <div class="block">
+        <h4>Vorteile</h4>
+        <ul>
+          <li>Betriebsgeschehen transparent</li>
+          <li>Schwachstellen früh erkennen</li>
+          <li>Gegenmaßnahmen rechtzeitig</li>
+          <li>geringer Erfassungsaufwand</li>
+          <li>einheitliche Entscheidungsbasis</li>
+          <li>Trends beobachten</li>
+          <li>Anbindung an das MIS</li>
+          <li>Vorgaben aus der Strategie ableiten</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Nachteile</h4>
+        <ul>
+          <li>Zahlen ≠ reales Geschehen</li>
+          <li>häufige Fehlinterpretation</li>
+          <li>Kennzahl als Selbstzweck</li>
+          <li>Daten in falschen Händen</li>
+          <li>Basiszahlen ändern sich unkontrolliert</li>
+          <li>Datenbasis nicht schlüssig</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:2px">Basiszahlen ändern sich durch Abschreibungen, Abwertungen, Aussonderungen, Produktionsleistung, Verrechnungssätze.</p>
+
+    <h3><span class="snr">1.2</span> Net Promoter Score (NPS)</h3>
+    <ul>
+      <li>Weiterempfehlungsbereitschaft, Skala 0–10</li>
+      <li>Detraktoren 0–6 · Passive 7–8 · Promotoren 9–10</li>
+    </ul>
+    <span class="formel" id="a-1-2">NPS = <b>Anteil Promotoren %</b> − <b>Anteil Detraktoren %</b></span>
+    <ul>
+      <li>Passive zählen nicht mit</li>
+      <li>Wertebereich −100 bis +100</li>
+    </ul>
+    <h4>Rechenbeispiel</h4>
+    <div class="tags">
+      <span>200 Befragte</span><span>120 Promotoren = 60 %</span><span>60 Detraktoren = 30 %</span><span>40 Passive, ungezählt</span><span>NPS = +30</span>
+    </div>
+
+    <h3><span class="snr">1.3</span> Wrench Time</h3>
+    <p id="a-1-3"><strong>Definition:</strong> Zeitanteil der Arbeitszeit, den das Personal mit Kerntätigkeiten verbringt.</p>
+    <span class="formel">Wrench Time = <b>Kerntätigkeiten</b> ÷ <b>Gesamtarbeitszeit</b> × 100</span>
+    <ul>
+      <li><strong>Kerntätigkeiten:</strong> Wartung, Inspektion, Instandsetzung, Verbesserung, Werkstatt, Stördiagnose</li>
+      <li><strong>Gesamtarbeitszeit:</strong> ohne Krankheit, Urlaub, Feiertage, Weiterbildung</li>
+    </ul>
+    <h4>Erhebungsmethoden</h4>
+    <div class="tags">
+      <span>Tätigkeitsstrukturanalyse</span><span>DILO / Verteilzeit (REFA)</span><span>Multimoment (MMH)</span><span>Selbstaufschreibung</span><span>Dokumentenanalyse</span><span>Verlaufsstudie</span><span>Interview</span>
+    </div>
+    <h4>Voraussetzungen</h4>
+    <ul>
+      <li>Kerntätigkeit und Arbeitszeit eindeutig definiert</li>
+      <li>Führungsleistungen werden mitbewertet</li>
+      <li>einheitliche Erhebung</li>
+      <li>Ziele allen Beteiligten klar</li>
+      <li>Mitspracherechte achten</li>
+    </ul>
+    <div class="two">
+      <div class="block">
+        <h4>Chancen</h4>
+        <ul>
+          <li>Nebenzeiten erkennen</li>
+          <li>wertschöpfende Nebenzeiten zeigen</li>
+          <li>Dienstleister beurteilen</li>
+          <li>Standardarbeiten bewerten</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Risiken</h4>
+        <ul>
+          <li>stört TPM und Lean</li>
+          <li>Ausfallsenkung bleibt liegen</li>
+          <li>Fehlinterpretation der Werte</li>
+          <li>Mitarbeiter fühlen sich benachteiligt</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3><span class="snr">1.4</span> Neun Kriterien für Kennzahlen</h3>
+    <ol id="a-1-4">
+      <li><strong>Maßnahmen ableiten</strong> – geschlossener Regelkreis?</li>
+      <li><strong>Messbarkeit</strong> – in Zahlen fassbar?</li>
+      <li><strong>Objektivität</strong> – automatisiert erfassbar?</li>
+      <li><strong>Beeinflussbarkeit</strong> – durch Handeln steuerbar?</li>
+      <li><strong>Erfassungsaufwand</strong> – zeitlich und personell vertretbar?</li>
+      <li><strong>Kommunikation</strong> – ohne Erklärung verständlich?</li>
+      <li><strong>Ziele und Strategien</strong> – macht Strategie messbar?</li>
+      <li><strong>Konzern-Reporting</strong> – wird die Abteilung daran gemessen?</li>
+      <li><strong>Kundennutzen</strong> – Nutzen für Kunde und Unternehmen?</li>
+    </ol>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgaben · Kapitel 1</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.1</span><span class="pt">3 P.</span></div>
+      <p>Nennen und definieren Sie mind. 3 sinnvolle Kennzahlen zur Bewertung der richtigen Instandhaltungsstrategie.</p>
+      <a class="zur" href="#a-1-1">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li><strong>MTBF</strong> (Mean Time Between Failures): durchschnittliche Betriebszeit zwischen zwei Ausfällen.</li>
+          <li><strong>MRT</strong> (Mean Repair Time): durchschnittliche Zeit, die für die Reparatur benötigt wird.</li>
+          <li><strong>MTTR</strong> (Mean Time To Repair): durchschnittliche Zeit vom Auftreten eines Fehlers bis zur Wiederherstellung der Betriebsfähigkeit.</li>
+          <li><strong>Wrench Time</strong>: Anteil der Arbeitszeit eines Instandhalters, in dem er tatsächlich aktiv an der Anlage arbeitet.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.2</span><span class="pt">4 P.</span></div>
+      <p>Nennen und erläutern Sie kurz vier Kriterien für die Auswahl geeigneter Kennzahlen im Service und der Instandhaltung.</p>
+      <a class="zur" href="#a-1-2">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li><strong>Messbarkeit</strong> – Kann die Kennzahl sinnvoll gemessen werden?</li>
+          <li><strong>Objektivität</strong> – Ist die Kennzahl objektiv?</li>
+          <li><strong>Beeinflussbarkeit</strong> – Kann die Kennzahl beeinflusst werden?</li>
+          <li><strong>Präsentierbarkeit / Aussagekraft</strong> – Kann man die Kennzahl z. B. dem Vorstand präsentieren?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.3</span><span class="pt">2 P.</span></div>
+      <p>Was versteht man unter der Kennzahl Wrench Time? Welche Aussage kann anhand der Wrench Time getroffen werden?</p>
+      <a class="zur" href="#a-1-3">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <p>Zeitanteil der Arbeitszeit, den das Personal mit Kerntätigkeiten verbringt, im Verhältnis zur Gesamtarbeitszeit.</p>
+        <p>Anwendung: Beispielsweise lassen sich externe Dienstleister vergleichen und bewerten.</p>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 2 ================= -->
+<section class="pair" id="k2">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">2</span><h2>Service- und Instandhaltungs­controlling</h2></div>
+
+    <h3><span class="snr">2.1</span> Wandel im Controllingverständnis</h3>
+    <table>
+      <thead><tr><th>Traditionell</th><th>Systemorientiert</th></tr></thead>
+      <tbody>
+        <tr><td>Fremdkoordination</td><td>Eigenkoordination</td></tr>
+        <tr><td>Fremdkontrolle</td><td>Selbststeuerung</td></tr>
+        <tr><td>Innenorientierung</td><td>Innen- und Außenorientierung</td></tr>
+        <tr><td>Kostenstellen</td><td>Prozesse</td></tr>
+        <tr><td>stufenweise / radikal</td><td>kontinuierliche Verbesserung</td></tr>
+        <tr><td>direkte Bereiche</td><td>direkte und indirekte Bereiche</td></tr>
+        <tr><td>bereichsspezifisch</td><td>vernetzt, übergreifend</td></tr>
+        <tr><td>Teiloptimierung</td><td>Gesamtoptimierung</td></tr>
+        <tr><td>statisch</td><td>dynamisch</td></tr>
+        <tr><td>Mengen- und Wertziel</td><td>mehrdimensionaler Zielkatalog</td></tr>
+        <tr><td>operativ</td><td>operativ und strategisch</td></tr>
+      </tbody>
+    </table>
+
+    <h3><span class="snr">2.2</span> Kosten- und technisches Controlling</h3>
+    <div class="two">
+      <div class="block">
+        <h4>Kostencontrolling</h4>
+        <ul>
+          <li>Kostenarten-, Stellen-, Trägerrechnung</li>
+          <li>Betriebsabrechnung</li>
+          <li>verursachungsgerechte Verrechnung</li>
+          <li>Verrechnungssätze</li>
+          <li>Vor-, mitlaufende, Nachkalkulation</li>
+          <li>Planung nach Menge und Kosten</li>
+          <li>Budgets erstellen</li>
+          <li>Soll-Ist, Abweichungsanalyse</li>
+          <li>Vorschauen, Entscheidungsvorlagen</li>
+          <li>Kennzahlensystem pflegen</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Technisches Controlling</h4>
+        <ul>
+          <li>Kennzahlen zu Verschleiß, Nutzungsdauer, Zuverlässigkeit</li>
+          <li>Schwachstellenanalyse</li>
+          <li>Schadens- und Ursachenanalyse</li>
+          <li>optimaler Ausmusterungszeitpunkt</li>
+          <li>Inspektionsintervalle optimieren</li>
+          <li>Wartungs- und Inspektionspläne mitgestalten</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3><span class="snr">2.3</span> Gap-Modell der Servicequalität</h3>
+    <ul>
+      <li>Vergleicht Kundenerwartung, Wahrnehmung und erbrachte Leistung</li>
+      <li>Erwartung entsteht aus Mund-zu-Mund, Bedürfnissen, Erfahrung</li>
+      <li>Kunde: erwarteter vs. wahrgenommener Service</li>
+      <li>Anbieter: Managementwahrnehmung → Vorgabe → Erbringung → Kommunikation</li>
+      <li>Jede Lücke dazwischen ist ein Qualitätsproblem</li>
+    </ul>
+    <div class="merk"><strong>Kernaussage:</strong> Servicequalität leidet, wenn Erwartung, Wahrnehmung, Umsetzung und Kommunikation auseinanderfallen.</div>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgabe · Kapitel 2</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.4</span><span class="pt">3 P.</span></div>
+      <p>Nennen Sie mind. 3 wesentliche Aufgaben des technischen Instandhaltungs-Controllings (nicht Kostencontrolling).</p>
+      <a class="zur" href="#a-1-4">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li>Schwachstellenanalyse</li>
+          <li>Ursachenanalyse</li>
+          <li>Optimierung von Inspektionsintervallen</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 3 ================= -->
+<section class="pair" id="k3">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">3</span><h2>Total Productive Management</h2></div>
+
+    <h3><span class="snr">3.1</span> Definition und Ziele</h3>
+    <p>Ganzheitliches Konzept zur Optimierung der Instandhaltung und zur Steigerung der Anlageneffektivität, unter Beteiligung aller Mitarbeiter.</p>
+    <ul>
+      <li>Gesamtanlageneffektivität maximieren</li>
+      <li>lebenszyklusorientiertes Instandhaltungssystem</li>
+      <li>alle Abteilungen einbeziehen</li>
+      <li>alle Mitarbeiter, vom Top-Management bis zum Arbeiter</li>
+      <li>Motivation zur Verbreitung des Konzepts</li>
+    </ul>
+
+    <h3><span class="snr">3.2</span> Drei Grundgedanken</h3>
+    <ol>
+      <li><strong>Null-Fehler-Denken</strong> – keine Störung, kein Qualitätsverlust, kein Geschwindigkeitsverlust; typisch japanisch</li>
+      <li><strong>Kaizen</strong> – KVP in kleinen Schritten; viele billige Maßnahmen statt weniger großer</li>
+      <li><strong>Anlagenlebenszyklus</strong> – Planung, Konstruktion, Beschaffung, Produktion, Instandhaltung; Erfahrungen zurückführen</li>
+    </ol>
+
+    <h3><span class="snr">3.3</span> Bedeutung von „Total“</h3>
+    <ul>
+      <li>totale Effektivität der Anlagen</li>
+      <li>totales Instandhaltungssystem: präventiv und perfektiv</li>
+      <li>totale Einbeziehung aller Mitarbeiter</li>
+    </ul>
+
+    <h3><span class="snr">3.4</span> Acht Säulen und Basiselemente</h3>
+    <ol id="a-1-5">
+      <li>kontinuierliche Anlagenverbesserung</li>
+      <li>autonome Instandhaltung</li>
+      <li>geplante Instandhaltung</li>
+      <li>Schulung und Training</li>
+      <li>Instandhaltungsprävention</li>
+      <li>Qualitätsmanagement</li>
+      <li>TPM im administrativen Bereich</li>
+      <li>Arbeitssicherheit, Gesundheit, Umwelt</li>
+    </ol>
+    <h4>Basiselemente</h4>
+    <div class="tags">
+      <span>Erstinspektion</span><span>Standardisierung</span><span>Visualisierung</span><span>5S</span><span>Eigenverantwortung</span><span>Teamarbeit</span>
+    </div>
+
+    <h3><span class="snr">3.5</span> 5S-Methode</h3>
+    <ol>
+      <li><strong>Seiri</strong> – aussortieren</li>
+      <li><strong>Seiton</strong> – ergonomisch anordnen</li>
+      <li><strong>Seiso</strong> – säubern</li>
+      <li><strong>Seiketsu</strong> – standardisieren</li>
+      <li><strong>Shitsuke</strong> – Disziplin halten</li>
+    </ol>
+
+    <h3><span class="snr">3.6</span> Gesamtanlageneffektivität (OEE)</h3>
+    <div class="two" id="a-1-6">
+      <div class="block">
+        <h4>Verfügbarkeit</h4>
+        <ul>
+          <li>Rüstzeiten senken</li>
+          <li>Versager beseitigen</li>
+        </ul>
+        <p style="font-size:13px;color:#5d665f;margin:7px 0 0;line-height:1.5">Rüstvorgänge kürzen · Testläufe begrenzen · Anlagen verbessern · autonome Instandhaltung</p>
+      </div>
+      <div class="block">
+        <h4>Leistungsgrad</h4>
+        <ul>
+          <li>Leerlauf und Kurzausfälle senken</li>
+          <li>Geschwindigkeitsverluste beseitigen</li>
+        </ul>
+        <p style="font-size:13px;color:#5d665f;margin:7px 0 0;line-height:1.5">Fehlbedienung abstellen · Reinigen und Schmieren · Teile tauschen · vorausschauende Instandhaltung</p>
+      </div>
+      <div class="block">
+        <h4>Qualitätsgrad</h4>
+        <ul>
+          <li>Ausschuss und Nacharbeit beseitigen</li>
+          <li>Produktqualität sichern</li>
+        </ul>
+        <p style="font-size:13px;color:#5d665f;margin:7px 0 0;line-height:1.5">SPC einführen · Einstellung verbessern · überwachen · Anlagengenauigkeit</p>
+      </div>
+    </div>
+
+    <h3><span class="snr">3.7</span> Erfolgsfaktoren der Realisierung</h3>
+    <ul>
+      <li>gemeinsame Idee, individuelle Umsetzung</li>
+      <li>Top-Management von Beginn an</li>
+      <li>langjähriger Prozess, kein Projekt</li>
+      <li>Pilotbereich, dann ausweiten</li>
+      <li>Betriebsrat ab Tag eins</li>
+      <li>viel visuelles Management</li>
+      <li>Erfolge feiern, z. B. TPM-Award</li>
+    </ul>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgaben · Kapitel 3</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.5</span><span class="pt">5 P.</span></div>
+      <p>Beschreiben Sie kurz fünf typische Bausteine (Säulen) des TPM.</p>
+      <a class="zur" href="#a-1-5">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li><strong>Kontinuierliche Anlagenverbesserung</strong> – Bemühung, kleine Faktoren der Anlage zu verbessern</li>
+          <li><strong>Autonome Instandhaltung</strong> – Bewusstsein der Anlagenführer für kleine Instandsetzungsaufgaben</li>
+          <li><strong>Geplante Instandhaltung</strong> – regelmäßige und sinnvoll geplante Instandhaltung durchführen</li>
+          <li><strong>Qualitätsmanagement</strong> – sicherstellen, dass keine Qualitätsverluste eintreten</li>
+          <li><strong>Instandhaltungsprävention</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.6</span><span class="pt">3 P.</span></div>
+      <p>Benennen Sie die drei Faktoren der OEE-Kennzahl. Beschreiben Sie für jeden Faktor mindestens eine typische Maßnahme.</p>
+      <a class="zur" href="#a-1-6">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li><strong>Nutzungsgrad</strong> – durch gute Instandhaltung hohe Anlagenverfügbarkeit und damit hohe Nutzung der Maschine</li>
+          <li><strong>Qualitätsgrad</strong> – Mitarbeiter motivieren, die Qualität hoch zu halten, etwa durch Bonussysteme</li>
+          <li><strong>Leistungsgrad</strong> – Leistung der Mitarbeiter, aber auch der Maschine durch gute Arbeitsatmosphäre motivieren</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 4 ================= -->
+<section class="pair" id="k4">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">4</span><h2>Reliability Centred Maintenance</h2></div>
+
+    <h3><span class="snr">4.1</span> Die sieben Grundfragen</h3>
+    <ol id="a-1-9">
+      <li>Welche Funktionen erfüllt die Maschine?</li>
+      <li>Wie kann sie dabei gestört werden?</li>
+      <li>Wodurch entsteht jede Störung?</li>
+      <li>Was passiert beim Auftreten?</li>
+      <li>Wie gravierend ist die Wirkung?</li>
+      <li>Wie lässt sich die Störung vermeiden oder vorhersagen?</li>
+      <li>Was tun, wenn weder vermeidbar noch vorhersagbar?</li>
+    </ol>
+    <div class="merk">Weg: Funktion → Störung → Ursache → Folge → Bewertung → Vermeidung → Restfall.</div>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgabe · Kapitel 4</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.9</span><span class="pt">5 P.</span></div>
+      <p>Beschreiben Sie kurz das Vorgehen eines RCM-Verfahrens. Nennen Sie mind. 5 Schritte/Fragen.</p>
+      <a class="zur" href="#a-1-9">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ol>
+          <li>Systemauswahl</li>
+          <li>Systembewertung</li>
+          <li>Risikoauswahl</li>
+          <li>Risikobewertung</li>
+          <li>Maßnahmenidentifikation</li>
+          <li>Maßnahmenbewertung</li>
+        </ol>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 5 ================= -->
+<section class="pair" id="k5">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">5</span><h2>Outsourcing und Servicepartnerschaften</h2></div>
+
+    <h3><span class="snr">5.1</span> Definition</h3>
+    <p>Kunstwort aus <strong>Outside + Resource + using</strong>: Übertragung interner Dienstleistungsfunktionen an fremde Unternehmen, die dauerhaft die unternehmerische Verantwortung übernehmen.</p>
+
+    <h3><span class="snr">5.2</span> Fremdvergabe oder Outsourcing</h3>
+    <table>
+      <thead><tr><th>Fremdvergabe</th><th>Outsourcing</th></tr></thead>
+      <tbody>
+        <tr><td>bedarfsorientierter Zukauf</td><td>ganze Leistungspakete mit Verantwortung</td></tr>
+        <tr><td>Spitzenlast, Kapazitätsengpass</td><td>langfristige Partnerschaft</td></tr>
+        <tr><td>taktisch, operativ</td><td>strategische Entscheidung</td></tr>
+        <tr><td>kurz- bis mittelfristig</td><td>hohe Kostensenkung</td></tr>
+        <tr><td>mehrere Dienstleister möglich</td><td>Konzentration auf Kerngeschäft</td></tr>
+        <tr><td>Koordinationsaufwand bleibt</td><td>enge Abstimmung, Ergebniskontrolle</td></tr>
+      </tbody>
+    </table>
+
+    <h3><span class="snr">5.3</span> Typische Ziele</h3>
+    <div class="two">
+      <div class="block"><h4>Wirtschaftlich</h4><ul><li>Erfahrung und Technologie nutzen</li><li>Kostentransparenz</li></ul></div>
+      <div class="block"><h4>Qualifikation</h4><ul><li>ausgebildete Fachkräfte</li><li>teure Mittel mitnutzen</li><li>Erfahrung anderer Betriebe</li></ul></div>
+      <div class="block"><h4>Personal</h4><ul><li>keine Personalrisiken</li><li>Spitzenbedarf abdecken</li><li>weniger Haftung</li></ul></div>
+      <div class="block"><h4>Organisation</h4><ul><li>eigene Kapazität entlasten</li><li>Wettbewerb Eigen/Fremd</li><li>neue Strategien nutzen</li></ul></div>
+    </div>
+
+    <h3><span class="snr">5.4</span> Chancen und Risiken</h3>
+    <div class="two" id="a-1-7">
+      <div class="block">
+        <h4>Chancen</h4>
+        <ul>
+          <li>Kosten senken</li>
+          <li>Fixkosten flexibilisieren</li>
+          <li>Steuerung und Kontrolle</li>
+          <li>Qualität sichern</li>
+          <li>Innovation steigern</li>
+          <li>Servicementalität</li>
+          <li>Kooperation verbessern</li>
+          <li>Motivation steigern</li>
+          <li>Lohn- und Gehaltsflexibilität</li>
+          <li>weniger Haftung</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Risiken</h4>
+        <ul>
+          <li>irreversible Abhängigkeit</li>
+          <li>geringer Einfluss</li>
+          <li>Know-how-Verlust</li>
+          <li>fremde Strukturen</li>
+          <li>fehlendes Know-how</li>
+          <li>Transaktionskosten unterschätzt</li>
+          <li>Fixkosten sinken nicht</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgabe · Kapitel 5</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.7</span><span class="pt">6 P.</span></div>
+      <p>Beschreiben Sie Vor- und Nachteile von Outsourcing in der Instandhaltung. Je mind. drei Vor- und Nachteile.</p>
+      <a class="zur" href="#a-1-7">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <p><strong>Vorteile:</strong></p>
+        <ul><li>Innovationsförderung</li><li>potenzielle Kosteneinsparungen</li><li>flexibel und skalierbar</li></ul>
+        <p><strong>Nachteile:</strong></p>
+        <ul><li>irreversible Abhängigkeit</li><li>Know-how-Verlust</li><li>Kosten bleiben bestehen</li></ul>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 6 ================= -->
+<section class="pair" id="k6">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">6</span><h2>Ecosystem Maintenance</h2></div>
+
+    <h3><span class="snr">6.1</span> Von der Leistungsbeziehung zum Ecosystem</h3>
+    <ul>
+      <li>früher: Bediener („ich produziere“) und Instandhalter („ich repariere“)</li>
+      <li>heute zusätzlich: OEM, Ersatzteilhändler, Komponentenhersteller</li>
+      <li>ferner: Dienstleister, Berater, Messdienstleister, KI- und Datenspezialisten</li>
+      <li>Folge: mehr Schnittstellen, weniger Überblick</li>
+    </ul>
+
+    <h3><span class="snr">6.2</span> Erfolgsfaktoren der Lenkung</h3>
+    <ul id="a-1-8">
+      <li>gemeinsame Kennzahlen</li>
+      <li>gemeinsame Jour fixes</li>
+      <li>gemeinsame Projekte</li>
+      <li>gemeinsame Prozesslandkarte</li>
+      <li>vernetzte IT-Systeme</li>
+      <li>gemeinsames Wissensmanagement</li>
+    </ul>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgabe · Kapitel 6</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.8</span><span class="pt">4 P.</span></div>
+      <p>Nennen Sie mind. vier Erfolgsfaktoren einer guten Servicepartnerschaft im Ecosystem Maintenance.</p>
+      <a class="zur" href="#a-1-8">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li>gemeinsame Kennzahlen</li>
+          <li>gemeinsame Projektauswahl</li>
+          <li>regelmäßige Kommunikation</li>
+          <li>offenes Verhältnis beim Informationsaustausch</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 7 ================= -->
+<section class="pair" id="k7">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">7</span><h2>Weitere Aspekte des Servicemanagements</h2></div>
+
+    <h3><span class="snr">7.1</span> Service Excellence</h3>
+    <p>Ziel: Kunden nicht nur zufriedenstellen, sondern überraschen und begeistern.</p>
+    <ul>
+      <li>Begeisterung durch Flexibilität im konkreten Fall</li>
+      <li>Mehrleistung in schwierigen Situationen</li>
+      <li>motiviertes Personal ist der größte Hebel</li>
+      <li>DIN SPEC 77224: Kundenbegeisterung durch Service Excellence</li>
+      <li>sieben Elemente, fortlaufender Prozess, Ziel ist Weiterempfehlung</li>
+    </ul>
+    <h4>Die sieben Elemente</h4>
+    <ol>
+      <li>Verantwortung der Geschäftsleitung</li>
+      <li>Orientierung der Ressourcen</li>
+      <li>Fehler und Verschwendung vermeiden</li>
+      <li>Kundenerlebnisse erfassen</li>
+      <li>Service-Innovationen</li>
+      <li>Begeisterung messen</li>
+      <li>Wirtschaftlichkeit prüfen</li>
+    </ol>
+
+    <h3><span class="snr">7.2</span> Remote Service</h3>
+    <div class="two">
+      <div class="block">
+        <h4>Chancen</h4>
+        <ul>
+          <li>kostengünstig und effizient</li>
+          <li>lange Ausfälle vermeiden</li>
+          <li>ortsunabhängig</li>
+          <li>24/7 möglich</li>
+          <li>Erfahrungsaustausch</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Risiken</h4>
+        <ul>
+          <li>fehlendes Vertrauen</li>
+          <li>kein persönlicher Kontakt</li>
+          <li>schwer kontrollierbar</li>
+          <li>Technik statt Kundenorientierung</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgabe · Kapitel 7</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.10</span><span class="pt">3 P.</span></div>
+      <p>Was verbirgt sich hinter der Abkürzung SLA? Welche Bedeutung haben SLAs?</p>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <p><strong>SLA – Service Level Agreement:</strong> Vereinbarung, die die geschuldete Verfügbarkeit von Anlagen sowie maximale Reaktions- und Reparaturzeiten des Wartungsteams im Störungsfall festlegt.</p>
+      </div>
+    </div>
+    <div class="luecke">
+      <b>Hinweis</b>
+      SLA steht nicht im Stoff links; die Lösung oben stammt aus der Lösungsdatei.
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 8 ================= -->
+<section class="pair" id="k8">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">8</span><h2>Service Engineering</h2></div>
+
+    <h3><span class="snr">8.1</span> Definition von Dienstleistungen</h3>
+    <p>Keine allgemein akzeptierte Definition. Häufig zitiert: immaterielle Leistungsfähigkeiten, an externen Faktoren erbracht, um dort Wirkung zu erzeugen.</p>
+    <ol id="a-1-11">
+      <li><strong>Abgabefähige Leistungsbereitschaft</strong> – Fähigkeit und Wille als Potenzial</li>
+      <li><strong>Integration externer Faktoren</strong> – Objekt kommt vom Kunden</li>
+      <li><strong>Immaterialität</strong> – Wirkung erst am Objekt sichtbar</li>
+    </ol>
+
+    <h3><span class="snr">8.2</span> Dienstleistungen als Entwicklungsobjekt</h3>
+    <p>Der Nachfrager bringt sich oder ein Objekt als <strong>externen Faktor</strong> in den Prozess ein.</p>
+    <ol>
+      <li><strong>Potenzial</strong> – Ressourcenmodell</li>
+      <li><strong>Prozess</strong> – Prozessmodell</li>
+      <li><strong>Ergebnis</strong> – Produktmodell</li>
+    </ol>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgaben · Kapitel 8</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.11</span><span class="pt">4 P.</span></div>
+      <p>Drei wesentliche Dimensionen eines Dienstleistungskonzepts für systematisches Service Engineering. Welche Rolle spielt der „externe Faktor“?</p>
+      <a class="zur" href="#a-1-11">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li>Ressourcenmodell</li>
+          <li>Produktmodell</li>
+          <li>Prozessmodell</li>
+        </ul>
+        <p class="fehlt">Weitere Ausführung enthält die Lösungsdatei nicht (Platzhalter).</p>
+      </div>
+    </div>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.12</span><span class="pt">3 P.</span></div>
+      <p>Erläutern Sie den Begriff der Co-Creation beim Service Engineering.</p>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <p>Der Begriff beschreibt die Kreation von Lösungen in Kooperation mit Dienstleistern und Auftraggebern zur Zusammenarbeit.</p>
+        <p class="fehlt">Weitere Ausführung enthält die Lösungsdatei nicht (Platzhalter).</p>
+      </div>
+    </div>
+    <div class="luecke">
+      <b>Hinweis</b>
+      Co-Creation ist im Stoff links nicht ausgeführt; die Lösung oben stammt aus der Lösungsdatei.
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 9 ================= -->
+<section class="pair" id="k9">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">9</span><h2>Lean Services und Lean Maintenance</h2></div>
+
+    <h3><span class="snr">9.1</span> Drei Arten von Arbeit</h3>
+    <ol>
+      <li><strong>Verschwendung</strong> – erhöht den Wert nicht <span class="kw">vermeiden</span></li>
+      <li><strong>Nicht wertschöpfend</strong> – nötig, ohne Wertbeitrag <span class="kw">reduzieren</span></li>
+      <li><strong>Wertschöpfend</strong> – erfüllt Kundenanforderung <span class="kw">optimieren</span></li>
+    </ol>
+    <div class="merk"><strong>Merkschema:</strong> vermeiden · reduzieren · optimieren.</div>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Kapitel 9</p>
+    <div class="leer">Keine eigene Klausuraufgabe im letzten Jahr.</div>
+  </aside>
+</section>
+
+<!-- ================= 10 ================= -->
+<section class="pair" id="k10">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">10</span><h2>Obsoleszenz und Obsoleszenzmanagement</h2></div>
+
+    <h3><span class="snr">10.1</span> Begriffe</h3>
+    <ul id="a-1-13">
+      <li><strong>obsolet</strong> – veraltet, unbrauchbar, überholt</li>
+      <li><strong>Obsoleszenz</strong> – Veraltung in der Endphase des Lebenszyklus</li>
+      <li>Komponente, Baugruppe oder System während der Nutzungsdauer nicht mehr verfügbar</li>
+    </ul>
+    <h4>Verlauf am Lebenszyklusende</h4>
+    <ul>
+      <li>entspricht nicht mehr dem Stand der Technik</li>
+      <li>Stückzahlen sinken bis null</li>
+      <li>Lagerbestände beim Hersteller zuerst, dann bei Dritten</li>
+      <li>nicht mehr beim OEM lieferbar = obsolet</li>
+    </ul>
+    <div class="merk"><strong>Ziel:</strong> Ersatzteilversorgung nach der Gewährleistung bis zur Außerbetriebnahme sichern.</div>
+
+    <h3><span class="snr">10.2</span> Gründe</h3>
+    <ul>
+      <li>Abkündigung durch den Hersteller, EOL oder EOS</li>
+      <li>vorübergehend keine Lieferbarkeit</li>
+      <li>Gesetze und Normen, z. B. Asbest, REACh</li>
+      <li>Kosten zu hoch, wirtschaftliche Obsoleszenz</li>
+      <li>Werkzeuge fehlen, z. B. Programmiergeräte, Formen</li>
+      <li>Wissen verloren</li>
+      <li>OEM oder OCM nicht mehr am Markt</li>
+      <li>neue Technologien</li>
+    </ul>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgabe · Kapitel 10</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.13</span><span class="pt">5 P.</span></div>
+      <p>Begriff der „Obsoleszenz“ im Anlagenmanagement. Je zwei Maßnahmen des reaktiven und des proaktiven Obsoleszenzmanagements.</p>
+      <a class="zur" href="#a-1-13">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <p><strong>Obsoleszenz:</strong> Ersatzteile, die nicht mehr auf dem Markt angeboten bzw. nicht mehr erwerbbar sind.</p>
+        <ul>
+          <li><strong>Reaktiv:</strong> nach einem Schaden nach Obsoleszenzteilen schauen</li>
+          <li><strong>Proaktiv:</strong> vorausschauend nach Obsoleszenzteilen suchen und sie bereithalten</li>
+          <li>bereits in der Konstruktion Gedanken zur Obsoleszenz machen</li>
+        </ul>
+      </div>
+    </div>
+    <div class="luecke">
+      <b>Hinweis</b>
+      Reaktiv und proaktiv stehen nicht im Stoff links; die Lösung oben stammt aus der Lösungsdatei.
+    </div>
+  </aside>
+</section>
+
+<!-- ================= 11 ================= -->
+<section class="pair" id="k11">
+  <div class="stoff">
+    <div class="kopf-zeile"><span class="knr">11</span><h2>Maintenance Engineering</h2></div>
+
+    <h3><span class="snr">11.1</span> Definition nach DIN EN 17666</h3>
+    <p>Ingenieurdisziplin, die Kompetenzen, Methoden und Werkzeuge zur Entwicklung und Unterstützung der Instandhaltung anwendet. Ziel: Funktionen über den Lebenszyklus <strong>sicher, nachhaltig, kosteneffizient</strong> erfüllen.</p>
+    <div class="tags">
+      <span>konstruktive Gestaltung</span><span>Nachhaltigkeit</span><span>Lebensverlängerung</span><span>Instandhaltungsunterstützung</span><span>Energie- und Rohstoffeinsparung</span>
+    </div>
+
+    <h3><span class="snr">11.2</span> Wesentliche Veränderung von Maschinen</h3>
+    <p>Die Maschinenrichtlinie gilt auch für gebrauchte Maschinen, die so verändert wurden, dass sie als neu gelten. Präzise Kriterien für jeden Einzelfall gibt es nicht.</p>
+    <h4>Beispiele</h4>
+    <ul id="a-1-14">
+      <li>Nachrüstung von Zubehör und Anbauteilen</li>
+      <li>neue technische Funktionen</li>
+      <li>neue Betriebsstoffe</li>
+      <li>modernisierte Schutzeinrichtungen</li>
+      <li>Monitore und Funk zur Überwachung</li>
+    </ul>
+    <h4>Rechtliche Folgen</h4>
+    <ul>
+      <li>neue Konformitätsbewertung mit Risikobeurteilung</li>
+      <li>neue Konformitätserklärung</li>
+      <li>neue CE-Kennzeichnung</li>
+      <li>neue technische Dokumentation</li>
+      <li>neue Betriebs- und Wartungsanleitungen</li>
+    </ul>
+
+    <h3><span class="snr">11.3</span> Prüfung nach Interpretationspapier</h3>
+    <ol>
+      <li>Neue Gefährdung? <em>nein</em> → Risikoerhöhung prüfen</li>
+      <li>Führt sie zu einem Risiko? <em>nein</em> → keine Veränderung</li>
+      <li>Schutzmaßnahmen ausreichend? <em>ja</em> → keine Veränderung</li>
+      <li>Mit einfachen Schutzeinrichtungen beherrschbar? <em>ja</em> → keine Veränderung</li>
+      <li><em>nein</em> → <strong>wesentliche Veränderung, wie neue Maschine</strong></li>
+    </ol>
+
+    <h3><span class="snr">11.4</span> Instandhaltbarkeit nach VDI 2246</h3>
+    <ul id="a-1-15">
+      <li>Identifizierbarkeit</li>
+      <li>Zugänglichkeit und Austauschbarkeit</li>
+      <li>Inspizierbarkeit und Prüfbarkeit</li>
+      <li>Standardisierung</li>
+      <li>Transport- und Lagerfähigkeit</li>
+      <li>Wartbarkeit</li>
+    </ul>
+  </div>
+
+  <aside class="fragen">
+    <p class="label">Klausuraufgaben · Kapitel 11</p>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.14</span><span class="pt">4 P.</span></div>
+      <p>Was ist unter „wesentliche Veränderung von Maschinen“ zu verstehen? Nennen Sie mind. drei Folgen.</p>
+      <a class="zur" href="#a-1-14">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <p class="fehlt">In der Lösungsdatei steht zu dieser Aufgabe nur ein Platzhalter, es liegt keine Lösung vor.</p>
+      </div>
+    </div>
+    <div class="karte">
+      <div class="kopfz"><span class="nr">1.15</span><span class="pt">6 P.</span></div>
+      <p>Nennen Sie sechs Grundanforderungen an die Instandhaltbarkeit technischer Erzeugnisse nach VDI 2246.</p>
+      <a class="zur" href="#a-1-15">Im Stoff nachlesen ↓</a>
+      <div class="loesung">
+        <b class="lt">Lösung</b>
+        <ul>
+          <li>Inspizierbarkeit</li>
+          <li>Wartbarkeit</li>
+          <li>Lagerbarkeit</li>
+          <li>Standardisierung</li>
+          <li>Zugänglichkeit und Austauschbarkeit</li>
+          <li>Identifizierbarkeit</li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<footer class="fuss">
+  Aufgabe 1, 15 Teilaufgaben, 60 Punkte: Kennzahlen 11 P., TPM/OEE 8 P., Outsourcing und Ecosystem 10 P., RCM 5 P., Dienstleistungen 7 P., Obsoleszenz 5 P., Maschinenrichtlinie und VDI 2246 10 P.<br>
+  Quellen: IHM_Stoffinhalte.md und klausuraufgaben.md, Klausur Service-/Instandhaltungsmanagement, Prof. Brumby. Lösungen in den Aufgabenkarten: /home/leopop/Lösingen_IHM (Stand 9. November 2026). Gelbe Felder sind Hinweise, kein Vorlesungsinhalt.
+</footer>
+
+</div>
+</body>
+</html>
