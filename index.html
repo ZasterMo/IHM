@@ -202,6 +202,86 @@
     font-size:12px;color:var(--muted);line-height:1.6;
   }
 
+  /* ---------- Lernkarten ---------- */
+  section.lernkarten{margin-top:48px;padding-top:34px;border-top:2px solid var(--accent)}
+  .lk-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .lk-head h2{
+    margin:0;font-family:var(--serif);font-weight:600;font-size:27px;
+    letter-spacing:-.015em;color:var(--accent-deep);
+  }
+  .lk-head p{margin:5px 0 0;font-size:13px;color:var(--muted)}
+  .lk-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 16px}
+  .lk-tab{
+    font:inherit;font-size:13px;padding:6px 14px;border-radius:999px;cursor:pointer;
+    border:1px solid var(--rule);background:var(--card);color:var(--ink-soft);
+  }
+  .lk-tab:hover{border-color:var(--accent)}
+  .lk-tab.on{background:var(--accent-deep);border-color:var(--accent-deep);color:#f6f1e3;font-weight:600}
+  .lk-tab .n{opacity:.6;margin-left:5px;font-size:12px}
+  .lk-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:8px}
+  .lk-bar{height:4px;background:var(--rule);border-radius:99px;overflow:hidden;margin-bottom:16px}
+  .lk-bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+
+  .lk-card{
+    perspective:1600px;cursor:pointer;outline:none;max-width:830px;margin:0 auto;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .lk-inner{
+    position:relative;min-height:230px;transform-style:preserve-3d;
+    transition:transform .45s cubic-bezier(.2,.7,.3,1);
+  }
+  .lk-card.flip .lk-inner{transform:rotateY(180deg)}
+  .lk-face{
+    position:absolute;inset:0;overflow:auto;
+    -webkit-backface-visibility:hidden;backface-visibility:hidden;
+    border:1px solid var(--rule);border-radius:14px;background:var(--card);
+    box-shadow:0 3px 14px rgba(60,50,30,.07);padding:24px 26px;
+  }
+  .lk-face .kat{
+    display:block;font-size:10.5px;font-weight:700;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:12px;
+  }
+  .lk-face .qt{
+    margin:0;font-family:var(--serif);font-size:23px;line-height:1.32;
+    font-weight:600;color:var(--ink);
+  }
+  .lk-face .hinweis{
+    position:absolute;left:26px;bottom:15px;font-size:11.5px;color:var(--muted);
+  }
+  .lk-back{transform:rotateY(180deg);background:#fbf7ec}
+  .lk-back p{margin:6px 0;font-size:14.5px;line-height:1.55}
+  .lk-back ul,.lk-back ol{margin:6px 0;padding-left:20px}
+  .lk-back li{font-size:14.5px;margin:3px 0}
+  .lk-back .f{
+    display:block;background:var(--accent-deep);color:#f6f1e3;border-radius:8px;
+    padding:9px 14px;font-weight:600;font-size:14.5px;
+  }
+  .lk-back table{font-size:12.5px;margin:6px 0}
+  .lk-back th,.lk-back td{padding:4px 8px}
+  .lk-back .fehlt{color:#8a6220;font-style:italic;font-size:13.5px}
+
+  .lk-ctrl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+  .lk-btn{
+    font:inherit;font-size:13px;padding:8px 15px;border-radius:9px;cursor:pointer;
+    border:1px solid var(--rule);background:var(--card);color:var(--ink-soft);
+  }
+  .lk-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent-deep)}
+  .lk-btn:disabled{opacity:.4;cursor:default}
+  .lk-btn.pri{background:var(--accent-deep);border-color:var(--accent-deep);color:#f6f1e3}
+  .lk-btn.gut{border-color:#9dc4ad;color:#2b6b4d}
+  .lk-btn.schwer{border-color:#e0c078;color:#8a6220}
+  .lk-keys{text-align:center;font-size:11.5px;color:var(--muted);margin-top:10px}
+
+  @media (max-width:980px){
+    .lk-face{padding:18px 18px 34px}
+    .lk-face .qt{font-size:19px}
+    .lk-face .hinweis{left:18px}
+  }
+
+  @media (max-width:560px){
+    .lk-ctrl .lk-btn{flex:1 1 44%}
+  }
+
   @media (max-width:980px){
     .wrap{padding:18px 15px 70px}
     .eyebrow{white-space:normal;letter-spacing:.11em}
@@ -216,6 +296,7 @@
   }
   @media print{
     body{background:#fff;font-size:10pt;line-height:1.4}
+    section.lernkarten{display:none}
     nav.toc{display:none}
     section.pair{display:block;page-break-inside:avoid;padding:10px 0}
     aside.fragen{margin-top:10px}
@@ -232,7 +313,7 @@
 <header class="kopf">
   <p class="eyebrow">Klausurvorbereitung · Prof. Brumby · 60 Punkte</p>
   <h1>Service- &amp; Instand­haltungs­management</h1>
-  <p>Links der Stoff, rechts die Klausuraufgabe zum selben Gebiet mit der <b>echten Lösung</b> aus der Lösungsdatei. <b>„Im Stoff nachlesen“</b> springt zum zugehörigen Abschnitt.</p>
+  <p>Links der Stoff, rechts die Klausuraufgabe zum selben Gebiet mit der <b>echten Lösung</b> aus der Lösungsdatei. <b>„Im Stoff nachlesen“</b> springt zum zugehörigen Abschnitt. Ganz unten warten <b>Lernkarten</b> zum Abfragen: ein Stapel für den Stoff, einer für die Klausuraufgaben.</p>
 </header>
 
 <nav class="toc">
@@ -247,6 +328,7 @@
   <a href="#k9"><b>9</b>Lean Services</a>
   <a href="#k10"><b>10</b>Obsoleszenz</a>
   <a href="#k11"><b>11</b>Maintenance Engineering</a>
+  <a href="#karten"><b>&#9733;</b>Lernkarten</a>
 </nav>
 
 <!-- ================= 1 ================= -->
@@ -1040,9 +1122,267 @@
   </aside>
 </section>
 
+<!-- ================= Lernkarten ================= -->
+<section class="lernkarten" id="karten">
+  <div class="lk-head">
+    <div>
+      <h2>Lernkarten</h2>
+      <p>Ein Thema pro Karte. Zwei Stapel: der Stoff und die Klausuraufgaben.</p>
+    </div>
+  </div>
+
+  <div class="lk-tabs">
+    <button type="button" class="lk-tab on" id="lk-tab-stoff">Stoff<span class="n" id="lk-n-stoff">0</span></button>
+    <button type="button" class="lk-tab" id="lk-tab-klausur">Klausuraufgaben<span class="n" id="lk-n-klausur">0</span></button>
+  </div>
+
+  <div class="lk-meta">
+    <span id="lk-pos">Karte 1 von 1</span>
+    <span id="lk-stand"></span>
+  </div>
+  <div class="lk-bar"><i id="lk-fill"></i></div>
+
+  <div class="lk-card" id="lk-card" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+    <div class="lk-inner" id="lk-inner">
+      <div class="lk-face lk-front" id="lk-front">
+        <span class="kat" id="lk-kat">Stoff</span>
+        <p class="qt" id="lk-q">…</p>
+        <span class="hinweis">Klicken oder Leertaste zum Umdrehen</span>
+      </div>
+      <div class="lk-face lk-back" id="lk-back">
+        <span class="kat">Antwort</span>
+        <div id="lk-a"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lk-ctrl">
+    <button type="button" class="lk-btn" id="lk-prev">← Zurück</button>
+    <button type="button" class="lk-btn pri" id="lk-flip">Umdrehen</button>
+    <button type="button" class="lk-btn" id="lk-next">Weiter →</button>
+    <button type="button" class="lk-btn gut" id="lk-gut">Gewusst</button>
+    <button type="button" class="lk-btn schwer" id="lk-nochmal">Nochmal</button>
+    <button type="button" class="lk-btn" id="lk-mix">Mischen</button>
+    <button type="button" class="lk-btn" id="lk-reset">Zurücksetzen</button>
+  </div>
+  <p class="lk-keys">Tasten: ← → blättern · Leertaste umdrehen · Karte anklicken dreht ebenfalls um</p>
+</section>
+
+<script>
+(function(){
+  var LK = {
+    stoff: [
+      {k:"1 · Kennzahlen", q:"Welche Vorteile haben Kennzahlen?", a:"<ul><li>Betriebsgeschehen transparent</li><li>Schwachstellen früh erkennen</li><li>Gegenmaßnahmen rechtzeitig ergreifen</li><li>geringer Erfassungsaufwand</li><li>einheitliche Entscheidungsbasis</li><li>Trends beobachten</li><li>Anbindung an das MIS</li><li>Vorgaben aus der Strategie ableiten</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Welche Nachteile haben Kennzahlen?", a:"<ul><li>Zahlen ≠ reales Geschehen</li><li>häufige Fehlinterpretation</li><li>Kennzahl als Selbstzweck</li><li>Daten in falschen Händen</li><li>Basiszahlen ändern sich unkontrolliert</li><li>Datenbasis nicht schlüssig</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Wodurch ändern sich Basiszahlen unkontrolliert?", a:"<ul><li>Abschreibungen</li><li>Abwertungen</li><li>Aussonderungen</li><li>Produktionsleistung</li><li>Verrechnungssätze</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Was misst der Net Promoter Score (NPS)?", a:"<p>Die Weiterempfehlungsbereitschaft der Kunden auf einer Skala von 0 bis 10.</p>"},
+      {k:"1 · Kennzahlen", q:"Wie werden die NPS-Gruppen eingeteilt?", a:"<ul><li><strong>Detraktoren</strong> 0–6</li><li><strong>Passive</strong> 7–8</li><li><strong>Promotoren</strong> 9–10</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Wie lautet die NPS-Formel?", a:"<span class=\"f\">NPS = Anteil Promotoren % − Anteil Detraktoren %</span><ul><li>Passive zählen nicht mit</li><li>Wertebereich −100 bis +100</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Was ist die Wrench Time?", a:"<p>Zeitanteil der Arbeitszeit, den das Personal mit Kerntätigkeiten verbringt.</p>"},
+      {k:"1 · Kennzahlen", q:"Wie wird die Wrench Time berechnet?", a:"<span class=\"f\">Wrench Time = Kerntätigkeiten ÷ Gesamtarbeitszeit × 100</span>"},
+      {k:"1 · Kennzahlen", q:"Welche Tätigkeiten zählen als Kerntätigkeit der Wrench Time?", a:"<ul><li>Wartung</li><li>Inspektion</li><li>Instandsetzung</li><li>Verbesserung</li><li>Werkstatt</li><li>Stördiagnose</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Welche Zeiten zählen nicht zur Gesamtarbeitszeit der Wrench Time?", a:"<ul><li>Krankheit</li><li>Urlaub</li><li>Feiertage</li><li>Weiterbildung</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Mit welchen Methoden wird die Wrench Time erhoben?", a:"<ul><li>Tätigkeitsstrukturanalyse</li><li>DILO / Verteilzeit (REFA)</li><li>Multimoment (MMH)</li><li>Selbstaufschreibung</li><li>Dokumentenanalyse</li><li>Verlaufsstudie</li><li>Interview</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Welche Voraussetzungen braucht eine Wrench-Time-Erhebung?", a:"<ul><li>Kerntätigkeit und Arbeitszeit eindeutig definiert</li><li>Führungsleistungen werden mitbewertet</li><li>einheitliche Erhebung</li><li>Ziele allen Beteiligten klar</li><li>Mitspracherechte achten</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Welche Chancen bietet die Wrench Time?", a:"<ul><li>Nebenzeiten erkennen</li><li>wertschöpfende Nebenzeiten zeigen</li><li>Dienstleister beurteilen</li><li>Standardarbeiten bewerten</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Welche Risiken birgt die Wrench Time?", a:"<ul><li>stört TPM und Lean</li><li>Ausfallsenkung bleibt liegen</li><li>Fehlinterpretation der Werte</li><li>Mitarbeiter fühlen sich benachteiligt</li></ul>"},
+      {k:"1 · Kennzahlen", q:"Welche neun Kriterien muss eine Kennzahl erfüllen?", a:"<ol><li><strong>Maßnahmen ableiten</strong> – geschlossener Regelkreis?</li><li><strong>Messbarkeit</strong> – in Zahlen fassbar?</li><li><strong>Objektivität</strong> – automatisiert erfassbar?</li><li><strong>Beeinflussbarkeit</strong> – durch Handeln steuerbar?</li><li><strong>Erfassungsaufwand</strong> – zeitlich und personell vertretbar?</li><li><strong>Kommunikation</strong> – ohne Erklärung verständlich?</li><li><strong>Ziele und Strategien</strong> – macht Strategie messbar?</li><li><strong>Konzern-Reporting</strong> – wird die Abteilung daran gemessen?</li><li><strong>Kundennutzen</strong> – Nutzen für Kunde und Unternehmen?</li></ol>"},
+
+      {k:"2 · Controlling", q:"Wodurch unterscheidet sich das systemorientierte vom traditionellen Controllingverständnis?", a:"<table><thead><tr><th>Traditionell</th><th>Systemorientiert</th></tr></thead><tbody><tr><td>Fremdkoordination</td><td>Eigenkoordination</td></tr><tr><td>Fremdkontrolle</td><td>Selbststeuerung</td></tr><tr><td>Innenorientierung</td><td>Innen- und Außenorientierung</td></tr><tr><td>Kostenstellen</td><td>Prozesse</td></tr><tr><td>stufenweise / radikal</td><td>kontinuierliche Verbesserung</td></tr><tr><td>direkte Bereiche</td><td>direkte und indirekte Bereiche</td></tr><tr><td>bereichsspezifisch</td><td>vernetzt, übergreifend</td></tr><tr><td>Teiloptimierung</td><td>Gesamtoptimierung</td></tr><tr><td>statisch</td><td>dynamisch</td></tr><tr><td>Mengen- und Wertziel</td><td>mehrdimensionaler Zielkatalog</td></tr><tr><td>operativ</td><td>operativ und strategisch</td></tr></tbody></table>"},
+      {k:"2 · Controlling", q:"Welche Aufgaben hat das Kostencontrolling?", a:"<ul><li>Kostenarten-, Stellen-, Trägerrechnung</li><li>Betriebsabrechnung</li><li>verursachungsgerechte Verrechnung</li><li>Verrechnungssätze</li><li>Vor-, mitlaufende, Nachkalkulation</li><li>Planung nach Menge und Kosten</li><li>Budgets erstellen</li><li>Soll-Ist, Abweichungsanalyse</li><li>Vorschauen, Entscheidungsvorlagen</li><li>Kennzahlensystem pflegen</li></ul>"},
+      {k:"2 · Controlling", q:"Welche Aufgaben hat das technische Controlling?", a:"<ul><li>Kennzahlen zu Verschleiß, Nutzungsdauer, Zuverlässigkeit</li><li>Schwachstellenanalyse</li><li>Schadens- und Ursachenanalyse</li><li>optimaler Ausmusterungszeitpunkt</li><li>Inspektionsintervalle optimieren</li><li>Wartungs- und Inspektionspläne mitgestalten</li></ul>"},
+      {k:"2 · Controlling", q:"Was vergleicht das Gap-Modell der Servicequalität?", a:"<ul><li>Kundenerwartung, Wahrnehmung und erbrachte Leistung</li><li>Erwartung aus Mund-zu-Mund, Bedürfnissen, Erfahrung</li><li>Kunde: erwarteter vs. wahrgenommener Service</li><li>Anbieter: Managementwahrnehmung → Vorgabe → Erbringung → Kommunikation</li><li>jede Lücke dazwischen ist ein Qualitätsproblem</li></ul><p><strong>Kernaussage:</strong> Servicequalität leidet, wenn Erwartung, Wahrnehmung, Umsetzung und Kommunikation auseinanderfallen.</p>"},
+
+      {k:"3 · TPM", q:"Was ist Total Productive Management (TPM)?", a:"<p>Ganzheitliches Konzept zur Optimierung der Instandhaltung und zur Steigerung der Anlageneffektivität, unter Beteiligung aller Mitarbeiter.</p>"},
+      {k:"3 · TPM", q:"Welche Ziele verfolgt TPM?", a:"<ul><li>Gesamtanlageneffektivität maximieren</li><li>lebenszyklusorientiertes Instandhaltungssystem</li><li>alle Abteilungen einbeziehen</li><li>alle Mitarbeiter, vom Top-Management bis zum Arbeiter</li><li>Motivation zur Verbreitung des Konzepts</li></ul>"},
+      {k:"3 · TPM", q:"Was besagt das Null-Fehler-Denken im TPM?", a:"<p>Keine Störung, kein Qualitätsverlust, kein Geschwindigkeitsverlust – typisch japanisch.</p>"},
+      {k:"3 · TPM", q:"Was bedeutet Kaizen im TPM?", a:"<p>Kontinuierlicher Verbesserungsprozess in kleinen Schritten: viele billige Maßnahmen statt weniger großer.</p>"},
+      {k:"3 · TPM", q:"Welche Rolle spielt der Anlagenlebenszyklus im TPM?", a:"<ul><li>Planung, Konstruktion, Beschaffung, Produktion, Instandhaltung</li><li>Erfahrungen in den Zyklus zurückführen</li></ul>"},
+      {k:"3 · TPM", q:"Was bedeutet „Total“ im TPM?", a:"<ul><li>totale Effektivität der Anlagen</li><li>totales Instandhaltungssystem: präventiv und perfektiv</li><li>totale Einbeziehung aller Mitarbeiter</li></ul>"},
+      {k:"3 · TPM", q:"Welche acht Säulen hat TPM?", a:"<ol><li>kontinuierliche Anlagenverbesserung</li><li>autonome Instandhaltung</li><li>geplante Instandhaltung</li><li>Schulung und Training</li><li>Instandhaltungsprävention</li><li>Qualitätsmanagement</li><li>TPM im administrativen Bereich</li><li>Arbeitssicherheit, Gesundheit, Umwelt</li></ol>"},
+      {k:"3 · TPM", q:"Welche Basiselemente hat TPM?", a:"<ul><li>Erstinspektion</li><li>Standardisierung</li><li>Visualisierung</li><li>5S</li><li>Eigenverantwortung</li><li>Teamarbeit</li></ul>"},
+      {k:"3 · TPM", q:"Was sind die 5S?", a:"<ol><li><strong>Seiri</strong> – aussortieren</li><li><strong>Seiton</strong> – ergonomisch anordnen</li><li><strong>Seiso</strong> – säubern</li><li><strong>Seiketsu</strong> – standardisieren</li><li><strong>Shitsuke</strong> – Disziplin halten</li></ol>"},
+      {k:"3 · TPM", q:"Aus welchen drei Faktoren besteht die OEE?", a:"<ul><li>Verfügbarkeit</li><li>Leistungsgrad</li><li>Qualitätsgrad</li></ul>"},
+      {k:"3 · TPM", q:"Wie verbessert man die Verfügbarkeit in der OEE?", a:"<ul><li>Rüstzeiten senken</li><li>Versager beseitigen</li></ul><p>Maßnahmen: Rüstvorgänge kürzen · Testläufe begrenzen · Anlagen verbessern · autonome Instandhaltung</p>"},
+      {k:"3 · TPM", q:"Wie verbessert man den Leistungsgrad in der OEE?", a:"<ul><li>Leerlauf und Kurzausfälle senken</li><li>Geschwindigkeitsverluste beseitigen</li></ul><p>Maßnahmen: Fehlbedienung abstellen · Reinigen und Schmieren · Teile tauschen · vorausschauende Instandhaltung</p>"},
+      {k:"3 · TPM", q:"Wie verbessert man den Qualitätsgrad in der OEE?", a:"<ul><li>Ausschuss und Nacharbeit beseitigen</li><li>Produktqualität sichern</li></ul><p>Maßnahmen: SPC einführen · Einstellung verbessern · überwachen · Anlagengenauigkeit</p>"},
+      {k:"3 · TPM", q:"Welche Erfolgsfaktoren hat die TPM-Realisierung?", a:"<ul><li>gemeinsame Idee, individuelle Umsetzung</li><li>Top-Management von Beginn an</li><li>langjähriger Prozess, kein Projekt</li><li>Pilotbereich, dann ausweiten</li><li>Betriebsrat ab Tag eins</li><li>viel visuelles Management</li><li>Erfolge feiern, z. B. TPM-Award</li></ul>"},
+
+      {k:"4 · RCM", q:"Welche sieben Grundfragen stellt RCM?", a:"<ol><li>Welche Funktionen erfüllt die Maschine?</li><li>Wie kann sie dabei gestört werden?</li><li>Wodurch entsteht jede Störung?</li><li>Was passiert beim Auftreten?</li><li>Wie gravierend ist die Wirkung?</li><li>Wie lässt sich die Störung vermeiden oder vorhersagen?</li><li>Was tun, wenn weder vermeidbar noch vorhersagbar?</li></ol><p><strong>Weg:</strong> Funktion → Störung → Ursache → Folge → Bewertung → Vermeidung → Restfall.</p>"},
+
+      {k:"5 · Outsourcing", q:"Was ist Outsourcing?", a:"<p>Kunstwort aus <strong>Outside + Resource + using</strong>: Übertragung interner Dienstleistungsfunktionen an fremde Unternehmen, die dauerhaft die unternehmerische Verantwortung übernehmen.</p>"},
+      {k:"5 · Outsourcing", q:"Worin unterscheiden sich Fremdvergabe und Outsourcing?", a:"<table><thead><tr><th>Fremdvergabe</th><th>Outsourcing</th></tr></thead><tbody><tr><td>bedarfsorientierter Zukauf</td><td>ganze Leistungspakete mit Verantwortung</td></tr><tr><td>Spitzenlast, Kapazitätsengpass</td><td>langfristige Partnerschaft</td></tr><tr><td>taktisch, operativ</td><td>strategische Entscheidung</td></tr><tr><td>kurz- bis mittelfristig</td><td>hohe Kostensenkung</td></tr><tr><td>mehrere Dienstleister möglich</td><td>Konzentration auf Kerngeschäft</td></tr><tr><td>Koordinationsaufwand bleibt</td><td>enge Abstimmung, Ergebniskontrolle</td></tr></tbody></table>"},
+      {k:"5 · Outsourcing", q:"Welche typischen Ziele hat Outsourcing?", a:"<ul><li><strong>Wirtschaftlich:</strong> Erfahrung und Technologie nutzen, Kostentransparenz</li><li><strong>Qualifikation:</strong> ausgebildete Fachkräfte, teure Mittel mitnutzen, Erfahrung anderer Betriebe</li><li><strong>Personal:</strong> keine Personalrisiken, Spitzenbedarf abdecken, weniger Haftung</li><li><strong>Organisation:</strong> eigene Kapazität entlasten, Wettbewerb Eigen/Fremd, neue Strategien nutzen</li></ul>"},
+      {k:"5 · Outsourcing", q:"Welche Chancen bietet Outsourcing?", a:"<ul><li>Kosten senken</li><li>Fixkosten flexibilisieren</li><li>Steuerung und Kontrolle</li><li>Qualität sichern</li><li>Innovation steigern</li><li>Servicementalität</li><li>Kooperation verbessern</li><li>Motivation steigern</li><li>Lohn- und Gehaltsflexibilität</li><li>weniger Haftung</li></ul>"},
+      {k:"5 · Outsourcing", q:"Welche Risiken birgt Outsourcing?", a:"<ul><li>irreversible Abhängigkeit</li><li>geringer Einfluss</li><li>Know-how-Verlust</li><li>fremde Strukturen</li><li>fehlendes Know-how</li><li>Transaktionskosten unterschätzt</li><li>Fixkosten sinken nicht</li></ul>"},
+
+      {k:"6 · Ecosystem", q:"Wie hat sich die Leistungsbeziehung zum Ecosystem gewandelt?", a:"<ul><li>früher: Bediener („ich produziere“) und Instandhalter („ich repariere“)</li><li>heute zusätzlich: OEM, Ersatzteilhändler, Komponentenhersteller</li><li>ferner: Dienstleister, Berater, Messdienstleister, KI- und Datenspezialisten</li><li>Folge: mehr Schnittstellen, weniger Überblick</li></ul>"},
+      {k:"6 · Ecosystem", q:"Welche Erfolgsfaktoren lenken ein Ecosystem?", a:"<ul><li>gemeinsame Kennzahlen</li><li>gemeinsame Jour fixes</li><li>gemeinsame Projekte</li><li>gemeinsame Prozesslandkarte</li><li>vernetzte IT-Systeme</li><li>gemeinsames Wissensmanagement</li></ul>"},
+
+      {k:"7 · Servicemanagement", q:"Was ist Service Excellence?", a:"<p>Ziel: Kunden nicht nur zufriedenstellen, sondern überraschen und begeistern.</p><ul><li>Begeisterung durch Flexibilität im konkreten Fall</li><li>Mehrleistung in schwierigen Situationen</li><li>motiviertes Personal ist der größte Hebel</li><li>DIN SPEC 77224: Kundenbegeisterung durch Service Excellence</li><li>sieben Elemente, fortlaufender Prozess, Ziel ist Weiterempfehlung</li></ul>"},
+      {k:"7 · Servicemanagement", q:"Welche sieben Elemente hat Service Excellence?", a:"<ol><li>Verantwortung der Geschäftsleitung</li><li>Orientierung der Ressourcen</li><li>Fehler und Verschwendung vermeiden</li><li>Kundenerlebnisse erfassen</li><li>Service-Innovationen</li><li>Begeisterung messen</li><li>Wirtschaftlichkeit prüfen</li></ol>"},
+      {k:"7 · Servicemanagement", q:"Welche Chancen hat Remote Service?", a:"<ul><li>kostengünstig und effizient</li><li>lange Ausfälle vermeiden</li><li>ortsunabhängig</li><li>24/7 möglich</li><li>Erfahrungsaustausch</li></ul>"},
+      {k:"7 · Servicemanagement", q:"Welche Risiken hat Remote Service?", a:"<ul><li>fehlendes Vertrauen</li><li>kein persönlicher Kontakt</li><li>schwer kontrollierbar</li><li>Technik statt Kundenorientierung</li></ul>"},
+
+      {k:"8 · Service Engineering", q:"Wie werden Dienstleistungen definiert?", a:"<p>Keine allgemein akzeptierte Definition. Häufig zitiert: immaterielle Leistungsfähigkeiten, an externen Faktoren erbracht, um dort Wirkung zu erzeugen.</p>"},
+      {k:"8 · Service Engineering", q:"Welche drei Merkmale kennzeichnen eine Dienstleistung?", a:"<ol><li><strong>Abgabefähige Leistungsbereitschaft</strong> – Fähigkeit und Wille als Potenzial</li><li><strong>Integration externer Faktoren</strong> – Objekt kommt vom Kunden</li><li><strong>Immaterialität</strong> – Wirkung erst am Objekt sichtbar</li></ol>"},
+      {k:"8 · Service Engineering", q:"In welchen drei Modellen wird eine Dienstleistung entwickelt?", a:"<p>Der Nachfrager bringt sich oder ein Objekt als <strong>externen Faktor</strong> in den Prozess ein.</p><ol><li><strong>Potenzial</strong> – Ressourcenmodell</li><li><strong>Prozess</strong> – Prozessmodell</li><li><strong>Ergebnis</strong> – Produktmodell</li></ol>"},
+
+      {k:"9 · Lean Services", q:"Welche drei Arten von Arbeit unterscheidet Lean?", a:"<ol><li><strong>Verschwendung</strong> – erhöht den Wert nicht → vermeiden</li><li><strong>Nicht wertschöpfend</strong> – nötig, ohne Wertbeitrag → reduzieren</li><li><strong>Wertschöpfend</strong> – erfüllt Kundenanforderung → optimieren</li></ol><p><strong>Merkschema:</strong> vermeiden · reduzieren · optimieren.</p>"},
+
+      {k:"10 · Obsoleszenz", q:"Was bedeuten obsolet und Obsoleszenz?", a:"<ul><li><strong>obsolet</strong> – veraltet, unbrauchbar, überholt</li><li><strong>Obsoleszenz</strong> – Veraltung in der Endphase des Lebenszyklus</li><li>Komponente, Baugruppe oder System während der Nutzungsdauer nicht mehr verfügbar</li></ul>"},
+      {k:"10 · Obsoleszenz", q:"Wie verläuft das Lebenszyklusende einer Anlage?", a:"<ul><li>entspricht nicht mehr dem Stand der Technik</li><li>Stückzahlen sinken bis null</li><li>Lagerbestände beim Hersteller zuerst, dann bei Dritten</li><li>nicht mehr beim OEM lieferbar = obsolet</li></ul>"},
+      {k:"10 · Obsoleszenz", q:"Welche Gründe hat Obsoleszenz?", a:"<ul><li>Abkündigung durch den Hersteller, EOL oder EOS</li><li>vorübergehend keine Lieferbarkeit</li><li>Gesetze und Normen, z. B. Asbest, REACh</li><li>Kosten zu hoch, wirtschaftliche Obsoleszenz</li><li>Werkzeuge fehlen, z. B. Programmiergeräte, Formen</li><li>Wissen verloren</li><li>OEM oder OCM nicht mehr am Markt</li><li>neue Technologien</li></ul>"},
+      {k:"10 · Obsoleszenz", q:"Was ist das Ziel des Obsoleszenzmanagements?", a:"<p>Ersatzteilversorgung nach der Gewährleistung bis zur Außerbetriebnahme sichern.</p>"},
+
+      {k:"11 · Maintenance Engineering", q:"Was ist Maintenance Engineering nach DIN EN 17666?", a:"<p>Ingenieurdisziplin, die Kompetenzen, Methoden und Werkzeuge zur Entwicklung und Unterstützung der Instandhaltung anwendet. Ziel: Funktionen über den Lebenszyklus <strong>sicher, nachhaltig, kosteneffizient</strong> erfüllen.</p><ul><li>konstruktive Gestaltung</li><li>Nachhaltigkeit</li><li>Lebensverlängerung</li><li>Instandhaltungsunterstützung</li><li>Energie- und Rohstoffeinsparung</li></ul>"},
+      {k:"11 · Maintenance Engineering", q:"Was ist eine wesentliche Veränderung von Maschinen?", a:"<p>Die Maschinenrichtlinie gilt auch für gebrauchte Maschinen, die so verändert wurden, dass sie als neu gelten. Präzise Kriterien für jeden Einzelfall gibt es nicht.</p><ul><li>Nachrüstung von Zubehör und Anbauteilen</li><li>neue technische Funktionen</li><li>neue Betriebsstoffe</li><li>modernisierte Schutzeinrichtungen</li><li>Monitore und Funk zur Überwachung</li></ul>"},
+      {k:"11 · Maintenance Engineering", q:"Welche rechtlichen Folgen hat eine wesentliche Veränderung?", a:"<ul><li>neue Konformitätsbewertung mit Risikobeurteilung</li><li>neue Konformitätserklärung</li><li>neue CE-Kennzeichnung</li><li>neue technische Dokumentation</li><li>neue Betriebs- und Wartungsanleitungen</li></ul>"},
+      {k:"11 · Maintenance Engineering", q:"Wie prüft man eine Veränderung nach dem Interpretationspapier?", a:"<ol><li>Neue Gefährdung? <em>nein</em> → Risikoerhöhung prüfen</li><li>Führt sie zu einem Risiko? <em>nein</em> → keine Veränderung</li><li>Schutzmaßnahmen ausreichend? <em>ja</em> → keine Veränderung</li><li>Mit einfachen Schutzeinrichtungen beherrschbar? <em>ja</em> → keine Veränderung</li><li><em>nein</em> → <strong>wesentliche Veränderung, wie neue Maschine</strong></li></ol>"},
+      {k:"11 · Maintenance Engineering", q:"Welche sechs Grundanforderungen nennt die VDI 2246 an die Instandhaltbarkeit?", a:"<ul><li>Identifizierbarkeit</li><li>Zugänglichkeit und Austauschbarkeit</li><li>Inspizierbarkeit und Prüfbarkeit</li><li>Standardisierung</li><li>Transport- und Lagerfähigkeit</li><li>Wartbarkeit</li></ul>"}
+    ],
+
+    klausur: [
+      {k:"Aufgabe 1.1 · 3 P.", q:"Nennen und definieren Sie mind. 3 sinnvolle Kennzahlen zur Bewertung der richtigen Instandhaltungsstrategie.", a:"<ul><li><strong>MTBF</strong> (Mean Time Between Failures): durchschnittliche Betriebszeit zwischen zwei Ausfällen.</li><li><strong>MRT</strong> (Mean Repair Time): durchschnittliche Zeit, die für die Reparatur benötigt wird.</li><li><strong>MTTR</strong> (Mean Time To Repair): durchschnittliche Zeit vom Auftreten eines Fehlers bis zur Wiederherstellung der Betriebsfähigkeit.</li><li><strong>Wrench Time</strong>: Anteil der Arbeitszeit eines Instandhalters, in dem er tatsächlich aktiv an der Anlage arbeitet.</li></ul>"},
+      {k:"Aufgabe 1.2 · 4 P.", q:"Nennen und erläutern Sie kurz vier Kriterien für die Auswahl geeigneter Kennzahlen im Service und der Instandhaltung.", a:"<ul><li><strong>Messbarkeit</strong> – Kann die Kennzahl sinnvoll gemessen werden?</li><li><strong>Objektivität</strong> – Ist die Kennzahl objektiv?</li><li><strong>Beeinflussbarkeit</strong> – Kann die Kennzahl beeinflusst werden?</li><li><strong>Präsentierbarkeit / Aussagekraft</strong> – Kann man die Kennzahl z. B. dem Vorstand präsentieren?</li></ul>"},
+      {k:"Aufgabe 1.3 · 2 P.", q:"Was versteht man unter der Kennzahl Wrench Time? Welche Aussage kann anhand der Wrench Time getroffen werden?", a:"<p>Zeitanteil der Arbeitszeit, den das Personal mit Kerntätigkeiten verbringt, im Verhältnis zur Gesamtarbeitszeit.</p><p>Anwendung: Beispielsweise lassen sich externe Dienstleister vergleichen und bewerten.</p>"},
+      {k:"Aufgabe 1.4 · 3 P.", q:"Nennen Sie mind. 3 wesentliche Aufgaben des technischen Instandhaltungs-Controllings (nicht Kostencontrolling).", a:"<ul><li>Schwachstellenanalyse</li><li>Ursachenanalyse</li><li>Optimierung von Inspektionsintervallen</li></ul>"},
+      {k:"Aufgabe 1.5 · 5 P.", q:"Beschreiben Sie kurz fünf typische Bausteine (Säulen) des TPM.", a:"<ul><li><strong>Kontinuierliche Anlagenverbesserung</strong> – Bemühung, kleine Faktoren der Anlage zu verbessern</li><li><strong>Autonome Instandhaltung</strong> – Bewusstsein der Anlagenführer für kleine Instandsetzungsaufgaben</li><li><strong>Geplante Instandhaltung</strong> – regelmäßige und sinnvoll geplante Instandhaltung durchführen</li><li><strong>Qualitätsmanagement</strong> – sicherstellen, dass keine Qualitätsverluste eintreten</li><li><strong>Instandhaltungsprävention</strong></li></ul>"},
+      {k:"Aufgabe 1.6 · 3 P.", q:"Benennen Sie die drei Faktoren der OEE-Kennzahl. Beschreiben Sie für jeden Faktor mindestens eine typische Maßnahme.", a:"<ul><li><strong>Nutzungsgrad</strong> – durch gute Instandhaltung hohe Anlagenverfügbarkeit und damit hohe Nutzung der Maschine</li><li><strong>Qualitätsgrad</strong> – Mitarbeiter motivieren, die Qualität hoch zu halten, etwa durch Bonussysteme</li><li><strong>Leistungsgrad</strong> – Leistung der Mitarbeiter, aber auch der Maschine durch gute Arbeitsatmosphäre motivieren</li></ul>"},
+      {k:"Aufgabe 1.7 · 6 P.", q:"Beschreiben Sie Vor- und Nachteile von Outsourcing in der Instandhaltung. Je mind. drei Vor- und Nachteile.", a:"<p><strong>Vorteile:</strong></p><ul><li>Innovationsförderung</li><li>potenzielle Kosteneinsparungen</li><li>flexibel und skalierbar</li></ul><p><strong>Nachteile:</strong></p><ul><li>irreversible Abhängigkeit</li><li>Know-how-Verlust</li><li>Kosten bleiben bestehen</li></ul>"},
+      {k:"Aufgabe 1.8 · 4 P.", q:"Nennen Sie mind. vier Erfolgsfaktoren einer guten Servicepartnerschaft im Ecosystem Maintenance.", a:"<ul><li>gemeinsame Kennzahlen</li><li>gemeinsame Projektauswahl</li><li>regelmäßige Kommunikation</li><li>offenes Verhältnis beim Informationsaustausch</li></ul>"},
+      {k:"Aufgabe 1.9 · 5 P.", q:"Beschreiben Sie kurz das Vorgehen eines RCM-Verfahrens. Nennen Sie mind. 5 Schritte/Fragen.", a:"<ol><li>Systemauswahl</li><li>Systembewertung</li><li>Risikoauswahl</li><li>Risikobewertung</li><li>Maßnahmenidentifikation</li><li>Maßnahmenbewertung</li></ol>"},
+      {k:"Aufgabe 1.10 · 3 P.", q:"Was verbirgt sich hinter der Abkürzung SLA? Welche Bedeutung haben SLAs?", a:"<p><strong>SLA – Service Level Agreement:</strong> Vereinbarung, die die geschuldete Verfügbarkeit von Anlagen sowie maximale Reaktions- und Reparaturzeiten des Wartungsteams im Störungsfall festlegt.</p>"},
+      {k:"Aufgabe 1.11 · 4 P.", q:"Drei wesentliche Dimensionen eines Dienstleistungskonzepts für systematisches Service Engineering. Welche Rolle spielt der „externe Faktor“?", a:"<ul><li>Ressourcenmodell</li><li>Produktmodell</li><li>Prozessmodell</li></ul><p class=\"fehlt\">Weitere Ausführung enthält die Lösungsdatei nicht (Platzhalter).</p>"},
+      {k:"Aufgabe 1.12 · 3 P.", q:"Erläutern Sie den Begriff der Co-Creation beim Service Engineering.", a:"<p>Der Begriff beschreibt die Kreation von Lösungen in Kooperation mit Dienstleistern und Auftraggebern zur Zusammenarbeit.</p><p class=\"fehlt\">Weitere Ausführung enthält die Lösungsdatei nicht (Platzhalter).</p>"},
+      {k:"Aufgabe 1.13 · 5 P.", q:"Begriff der „Obsoleszenz“ im Anlagenmanagement. Je zwei Maßnahmen des reaktiven und des proaktiven Obsoleszenzmanagements.", a:"<p><strong>Obsoleszenz:</strong> Ersatzteile, die nicht mehr auf dem Markt angeboten bzw. nicht mehr erwerbbar sind.</p><ul><li><strong>Reaktiv:</strong> nach einem Schaden nach Obsoleszenzteilen schauen</li><li><strong>Proaktiv:</strong> vorausschauend nach Obsoleszenzteilen suchen und sie bereithalten</li><li>bereits in der Konstruktion Gedanken zur Obsoleszenz machen</li></ul>"},
+      {k:"Aufgabe 1.14 · 4 P.", q:"Was ist unter „wesentliche Veränderung von Maschinen“ zu verstehen? Nennen Sie mind. drei Folgen.", a:"<p class=\"fehlt\">In der Lösungsdatei steht zu dieser Aufgabe nur ein Platzhalter, es liegt keine Lösung vor.</p>"},
+      {k:"Aufgabe 1.15 · 6 P.", q:"Nennen Sie sechs Grundanforderungen an die Instandhaltbarkeit technischer Erzeugnisse nach VDI 2246.", a:"<ul><li>Inspizierbarkeit</li><li>Wartbarkeit</li><li>Lagerbarkeit</li><li>Standardisierung</li><li>Zugänglichkeit und Austauschbarkeit</li><li>Identifizierbarkeit</li></ul>"}
+    ]
+  };
+
+  var KEY = "ihm_lk_v1";
+  var st = {deck:"stoff", i:0, flip:false, order:null, marks:{}};
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) { var s = JSON.parse(raw); if (s && s.marks) st.marks = s.marks; }
+  } catch(e) {}
+
+  var $ = function(id){ return document.getElementById(id); };
+  var dk = function(){ return LK[st.deck]; };
+  var ord = function(){ if (!st.order) st.order = dk().map(function(_,i){ return i; }); return st.order; };
+  var mk = function(i){ return st.deck + ":" + i; };
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify({marks: st.marks})); } catch(e) {}
+  }
+
+  function layout(){
+    var inner = $("lk-inner"), f = $("lk-front"), b = $("lk-back");
+    inner.style.height = "auto";
+    var h = Math.max(f.scrollHeight, b.scrollHeight);
+    var cap = Math.round(window.innerHeight * 0.72);
+    inner.style.height = Math.min(h, cap) + "px";
+  }
+
+  function render(){
+    var o = ord(), d = dk();
+    if (st.i > o.length - 1) st.i = o.length - 1;
+    if (st.i < 0) st.i = 0;
+    var idx = o[st.i], c = d[idx];
+
+    $("lk-tab-stoff").className = "lk-tab" + (st.deck === "stoff" ? " on" : "");
+    $("lk-tab-klausur").className = "lk-tab" + (st.deck === "klausur" ? " on" : "");
+    $("lk-n-stoff").textContent = LK.stoff.length;
+    $("lk-n-klausur").textContent = LK.klausur.length;
+
+    $("lk-kat").textContent = c.k;
+    $("lk-q").textContent = c.q;
+    $("lk-a").innerHTML = c.a;
+    $("lk-card").className = "lk-card" + (st.flip ? " flip" : "");
+
+    var gut = 0, noch = 0;
+    o.forEach(function(i){ var m = st.marks[mk(i)]; if (m === "gut") gut++; else if (m === "nochmal") noch++; });
+    $("lk-pos").textContent = "Karte " + (st.i + 1) + " von " + o.length;
+    $("lk-stand").textContent = gut + " gewusst · " + noch + " nochmal · " + (o.length - gut - noch) + " offen";
+    $("lk-fill").style.width = ((st.i + 1) / o.length * 100) + "%";
+
+    $("lk-prev").disabled = (st.i === 0);
+    $("lk-next").disabled = (st.i === o.length - 1);
+
+    layout();
+  }
+
+  function turn(){
+    st.flip = !st.flip;
+    $("lk-card").className = "lk-card" + (st.flip ? " flip" : "");
+  }
+
+  function move(d){
+    st.i = Math.max(0, Math.min(ord().length - 1, st.i + d));
+    st.flip = false;
+    render();
+  }
+
+  function mark(v){
+    st.marks[mk(ord()[st.i])] = v;
+    save();
+    if (st.i < ord().length - 1) st.i++;
+    st.flip = false;
+    render();
+  }
+
+  function deck(name){
+    st.deck = name; st.i = 0; st.flip = false; st.order = null;
+    render();
+  }
+
+  $("lk-card").addEventListener("click", turn);
+  $("lk-flip").addEventListener("click", function(e){ e.stopPropagation(); turn(); });
+  $("lk-prev").addEventListener("click", function(){ move(-1); });
+  $("lk-next").addEventListener("click", function(){ move(1); });
+  $("lk-gut").addEventListener("click", function(){ mark("gut"); });
+  $("lk-nochmal").addEventListener("click", function(){ mark("nochmal"); });
+  $("lk-tab-stoff").addEventListener("click", function(){ deck("stoff"); });
+  $("lk-tab-klausur").addEventListener("click", function(){ deck("klausur"); });
+
+  $("lk-mix").addEventListener("click", function(){
+    var o = ord();
+    for (var i = o.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = o[i]; o[i] = o[j]; o[j] = t;
+    }
+    st.order = o; st.i = 0; st.flip = false;
+    render();
+  });
+
+  $("lk-reset").addEventListener("click", function(){
+    st.marks = {}; st.i = 0; st.flip = false; st.order = null;
+    save();
+    render();
+  });
+
+  document.addEventListener("keydown", function(e){
+    if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    var r = $("karten").getBoundingClientRect();
+    if (r.top > window.innerHeight - 120 || r.bottom < 120) return;
+    if (e.key === "ArrowRight") { e.preventDefault(); move(1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); move(-1); }
+    else if (e.key === " " || e.key === "Enter") {
+      if (e.target && e.target.closest && e.target.closest(".lk-ctrl, .lk-tab")) return;
+      e.preventDefault(); turn();
+    }
+  });
+
+  window.addEventListener("resize", function(){ layout(); });
+
+  render();
+})();
+</script>
+
 <footer class="fuss">
   Aufgabe 1, 15 Teilaufgaben, 60 Punkte: Kennzahlen 11 P., TPM/OEE 8 P., Outsourcing und Ecosystem 10 P., RCM 5 P., Dienstleistungen 7 P., Obsoleszenz 5 P., Maschinenrichtlinie und VDI 2246 10 P.<br>
-  Quellen: IHM_Stoffinhalte.md und klausuraufgaben.md, Klausur Service-/Instandhaltungsmanagement, Prof. Brumby. Lösungen in den Aufgabenkarten: /home/leopop/Lösingen_IHM (Stand 9. November 2026). Gelbe Felder sind Hinweise, kein Vorlesungsinhalt.
+  Quellen: IHM_Stoffinhalte.md und klausuraufgaben.md, Klausur Service-/Instandhaltungsmanagement, Prof. Brumby. Lösungen in den Aufgabenkarten: /home/leopop/Lösingen_IHM (Stand 9. November 2026). Gelbe Felder sind Hinweise, kein Vorlesungsinhalt. Lernkarten: 58 Stoffkarten und 15 Aufgabenkarten, ein Thema pro Karte; der Lernstand bleibt im Browser gespeichert.
 </footer>
 
 </div>
